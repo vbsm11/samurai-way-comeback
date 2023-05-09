@@ -27,10 +27,11 @@
   color: white;
 }
 
-.content {
+.profile {
   grid-area: c;
   background-color: gold;
 }
+
  .cover {
    width: 100%;
  }
