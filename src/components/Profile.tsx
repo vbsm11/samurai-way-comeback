@@ -1,26 +1,26 @@
 import React from 'react';
-import '../App.css';
+import s from './Profile.module.css'
 
 export const Profile = () => {
   return (
-      <div className="profile">
+      <div className={s.profile}>
           <div>
-              <img className="cover"
+              <img className={s.cover}
                    src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Spartak_Cup_of_Russia_2022_%282%29.jpg" alt='cover'/>
           </div>
           <div>
               ava + description
           </div>
           <div>
-              posts
+              My posts
               <div>
                   new post
               </div>
-              <div>
-                  <div>
+              <div className={s.posts}>
+                  <div className={s.item}>
                       post 1
                   </div>
-                  <div>
+                  <div className={s.item}>
                       post 2
                   </div>
               </div>
