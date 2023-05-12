@@ -6,15 +6,15 @@ type PostPropsType = {
     likesCount: number
 }
 
-export const Post = (props: PostPropsType) => {
+export const Post: React.FC<PostPropsType> = ({message, likesCount}) => {
     return (
         <div className={s.item}>
             <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Guillermo_Abascal.jpg/640px-Guillermo_Abascal.jpg"
                 alt="avatar"/>
-            {props.message}
+            {message}
             <div>
-                <span>{props.likesCount} likes</span>
+                <span>{likesCount} likes</span>
             </div>
         </div>
 
