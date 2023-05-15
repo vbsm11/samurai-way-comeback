@@ -16,7 +16,7 @@ const App: React.FC<AppPropsType> = ({state}) => {
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
-                <Navbar/>
+                <Navbar navbarState={state.sidebar}/>
                 <div className="app-wrapper-content">
                     <Route path='/profile' render={() => <Profile profileState={state.profilePage}/>}/>
                     <Route path='/dialogs' render={() => <Dialogs dialogsState={state.dialogsPage}/>}/>
