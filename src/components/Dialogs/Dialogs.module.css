@@ -10,3 +10,8 @@
 .messages {
     padding: 10px;
 }
+
+.newMessage {
+    text-align: right;
+    margin: 5px;
+}
