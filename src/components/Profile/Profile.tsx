@@ -9,7 +9,7 @@ type ProfilePropsType = {
     addPost: (postMessage: string) => void
 }
 
-export const Profile:React.FC<ProfilePropsType> = ({profileState}, addPost) => {
+export const Profile:React.FC<ProfilePropsType> = ({profileState, addPost}, ) => {
     return (
         <div>
             <ProfileInfo/>

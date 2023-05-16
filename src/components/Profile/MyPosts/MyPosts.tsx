@@ -18,10 +18,9 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, addPost}) => {
     const addPostHandler = () => {
         if (newPostElement.current) {
             addPost(newPostElement.current.value)
+            newPostElement.current.value = ''
         }
     }
-
-    console.log(newPostElement)
 
     return (
         <div className={s.postsBlock}>

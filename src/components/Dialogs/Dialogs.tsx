@@ -27,11 +27,12 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState}) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                <div className={s.newMessage}>
+                    <textarea ref={newMessageElement}/>
+                    <button onClick={sentMessage}>Sent message</button>
+                </div>
             </div>
-            <div className={s.newMessage}>
-                <textarea ref={newMessageElement}/>
-                <button onClick={sentMessage}>Sent message</button>
-            </div>
+
         </div>
     )
 }
