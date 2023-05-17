@@ -9,16 +9,17 @@ import {RootStateType} from './redux/state';
 
 type AppPropsType = {
     state: RootStateType
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
-const App: React.FC<AppPropsType> = ({state, addPost}) => {
+const App: React.FC<AppPropsType> = ({state, addPost, updateNewPostText}) => {
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar navbarState={state.sidebar}/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile profileState={state.profilePage} addPost={addPost}/>}/>
+                <Route path="/profile" render={() => <Profile profileState={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs dialogsState={state.dialogsPage}/>}/>
             </div>
         </div>
