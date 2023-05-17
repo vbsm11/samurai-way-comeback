@@ -6,9 +6,11 @@ import {DialogsPageType} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsState: DialogsPageType
+    sentMessage: () => void
+    updateNewMessageText: (newText: string) => void
 }
 
-export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, sentMessage, updateNewMessageText}) => {
 
     const dialogsElements = dialogsState.dialogs.map(d => <DialogItem name={d.name} id={d.id} imgUrl={d.imgUrl}/>)
 
@@ -16,8 +18,10 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState}) => {
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>()
 
-    const sentMessage = () => {
-        alert(newMessageElement.current?.value)
+    const onChangeHandler = () => {
+        if (newMessageElement.current) {
+            updateNewMessageText(newMessageElement.current.value)
+        }
     }
 
     return (
@@ -28,7 +32,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState}) => {
             <div className={s.messages}>
                 {messagesElements}
                 <div className={s.newMessage}>
-                    <textarea ref={newMessageElement}/>
+                    <textarea ref={newMessageElement} value={dialogsState.newMessageText} onChange={onChangeHandler}/>
                     <button onClick={sentMessage}>Sent message</button>
                 </div>
             </div>

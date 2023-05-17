@@ -32,6 +32,7 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    newMessageText: string
 }
 
 export type SidebarType = {
@@ -86,7 +87,8 @@ export const state: RootStateType = {
             {id: '5', message: 'Good', isMy: false},
             {id: '6', message: 'And you?', isMy: false},
             {id: '7', message: 'I am nice', isMy: true},
-        ]
+        ],
+        newMessageText: ''
     },
     sidebar: {
         firstFriends: [
@@ -118,5 +120,17 @@ export const addPost = () => {
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
+    rerenderEntireTree(state)
+}
+
+export const sentMessage = () => {
+    const newMessage: MessagesType = {id: '8', message: state.dialogsPage.newMessageText, isMy: true}
+    state.dialogsPage.messages.push(newMessage)
+    state.dialogsPage.newMessageText = ''
+    rerenderEntireTree(state)
+}
+
+export const updateNewMessageText = (newNext: string) => {
+    state.dialogsPage.newMessageText = newNext
     rerenderEntireTree(state)
 }
