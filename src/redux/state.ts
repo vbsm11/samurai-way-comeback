@@ -42,7 +42,7 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
     sidebar: SidebarType
 }
-``
+
 export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
