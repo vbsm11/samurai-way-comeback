@@ -12,9 +12,9 @@ type DialogsPropsType = {
 
 export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, sentMessage, updateNewMessageText}) => {
 
-    const dialogsElements = dialogsState.dialogs.map(d => <DialogItem name={d.name} id={d.id} imgUrl={d.imgUrl}/>)
+    const dialogsElements = dialogsState.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} imgUrl={d.imgUrl}/>)
 
-    const messagesElements = dialogsState.messages.map(m => <Message message={m.message} isMy={m.isMy}/>)
+    const messagesElements = dialogsState.messages.map(m => <Message key={m.id} message={m.message} isMy={m.isMy}/>)
 
     const newMessageElement = React.createRef<HTMLTextAreaElement>()
 
@@ -32,8 +32,14 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, sentMessage, 
             <div className={s.messages}>
                 {messagesElements}
                 <div className={s.newMessage}>
-                    <textarea ref={newMessageElement} value={dialogsState.newMessageText} onChange={onChangeHandler}/>
-                    <button onClick={sentMessage}>Sent message</button>
+                    <textarea
+                        ref={newMessageElement}
+                        value={dialogsState.newMessageText}
+                        onChange={onChangeHandler}
+                    />
+                    <button onClick={sentMessage}>
+                        Sent message
+                    </button>
                 </div>
             </div>
 

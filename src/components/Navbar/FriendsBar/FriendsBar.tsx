@@ -10,7 +10,7 @@ type NavbarPropsType = {
 export const FriendsBar: React.FC<NavbarPropsType> = ({firstFriends}) => {
 
     const friendsBar = firstFriends.map(f =>
-        <div className={s.friend}>
+        <div className={s.friend} key={f.id}>
             <div><img src={f.imgUrl}/></div>
             <div>{f.name}</div>
         </div>

@@ -13,7 +13,7 @@ type MyPostsPropsType = {
 
 export const MyPosts: React.FC<MyPostsPropsType> = ({posts, newPostText, addPost, updateNewPostText}) => {
 
-    const postsElements = posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    const postsElements = posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
@@ -28,10 +28,16 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, newPostText, addPost
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} value={newPostText} onChange={onPostChange}/>
+                    <textarea
+                        ref={newPostElement}
+                        value={newPostText}
+                        onChange={onPostChange}
+                    />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPost}>
+                        Add post
+                    </button>
                 </div>
             </div>
             <div className={s.posts}>

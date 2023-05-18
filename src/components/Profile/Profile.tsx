@@ -14,7 +14,12 @@ export const Profile:React.FC<ProfilePropsType> = ({profileState, addPost, updat
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={profileState.posts} newPostText={profileState.newPostText} addPost={addPost} updateNewPostText={updateNewPostText}/>
+            <MyPosts
+                posts={profileState.posts}
+                newPostText={profileState.newPostText}
+                addPost={addPost}
+                updateNewPostText={updateNewPostText}
+            />
         </div>
     )
 }
