@@ -1,3 +1,7 @@
+import {profileReducer} from './profile-reducer';
+import {dialogsReducer} from './dialogs-reducer';
+import {sidebarReducer} from './sidebar-reducer-reducer';
+
 export type DialogsType = {
     id: string
     name: string
@@ -151,28 +155,11 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case 'UPDATE-NEW-POST-TEXT':
-                this._state.profilePage.newPostText = action.newText
-                this._callSubscriber()
-                break
-            case 'ADD-POST':
-                const newPost: PostsType = {id: '3', message: this._state.profilePage.newPostText, likesCount: 0}
-                this._state.profilePage.posts.unshift(newPost)
-                this._state.profilePage.newPostText = ''
-                this._callSubscriber()
-                break
-            case 'UPDATE-NEW-MESSAGE-TEXT':
-                this._state.dialogsPage.newMessageText = action.newText
-                this._callSubscriber()
-                break
-            case 'SEND MESSAGE':
-                const newMessage: MessagesType = {id: '8', message: this._state.dialogsPage.newMessageText, isMy: true}
-                this._state.dialogsPage.messages.push(newMessage)
-                this._state.dialogsPage.newMessageText = ''
-                this._callSubscriber()
-                break
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+        this._callSubscriber()
     }
 }
 
