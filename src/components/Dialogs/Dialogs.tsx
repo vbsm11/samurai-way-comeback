@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {ActionType, DialogsPageType} from '../../redux/state';
+import {ActionType, DialogsPageType, sentMessageAC, updateNewMessageTextAC} from '../../redux/state';
 
 type DialogsPropsType = {
     dialogsState: DialogsPageType
@@ -11,7 +11,8 @@ type DialogsPropsType = {
 
 export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, dispatch}) => {
 
-    const dialogsElements = dialogsState.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} imgUrl={d.imgUrl}/>)
+    const dialogsElements = dialogsState.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}
+                                                                      imgUrl={d.imgUrl}/>)
 
     const messagesElements = dialogsState.messages.map(m => <Message key={m.id} message={m.message} isMy={m.isMy}/>)
 
@@ -19,15 +20,12 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, dispatch}) =>
 
     const onChangeHandler = () => {
         if (newMessageElement.current) {
-            dispatch({
-                type: 'UPDATE-NEW-MESSAGE-TEXT',
-                newText: newMessageElement.current.value
-            })
+            dispatch(updateNewMessageTextAC(newMessageElement.current.value))
         }
     }
 
     const sentMessage = () => {
-        dispatch({type: 'SENT MESSAGE'})
+        dispatch(sentMessageAC())
     }
 
     return (
@@ -48,7 +46,6 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, dispatch}) =>
                     </button>
                 </div>
             </div>
-
         </div>
     )
 }

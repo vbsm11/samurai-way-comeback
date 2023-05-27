@@ -175,3 +175,21 @@ export const store: StoreType = {
         }
     }
 }
+
+export const addPostAC = (): AddPostAT => ({
+    type: 'ADD-POST',
+})
+
+export const updateNewPostTextAC = (newText: string): UpdateNewPostTextAT => ({
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText
+})
+
+export const sentMessageAC = (): SentMessageAT => ({
+    type: 'SENT MESSAGE'
+})
+
+export const updateNewMessageTextAC = (newText: string): UpdateNewMessageTextAT => ({
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newText
+})
