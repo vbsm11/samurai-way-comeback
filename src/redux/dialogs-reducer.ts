@@ -1,5 +1,16 @@
 import {ActionType, DialogsPageType, MessagesType} from './state';
 
+type UpdateNewMessageTextAT = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
+
+type SentMessageAT = {
+    type: 'SEND MESSAGE'
+}
+
+export type DialogsActionType = UpdateNewMessageTextAT | SentMessageAT
+
 export const dialogsReducer = (state: DialogsPageType, action: ActionType): DialogsPageType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE-TEXT':
@@ -14,3 +25,12 @@ export const dialogsReducer = (state: DialogsPageType, action: ActionType): Dial
             return state
     }
 }
+
+export const updateNewMessageTextAC = (newText: string): UpdateNewMessageTextAT => ({
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newText
+})
+
+export const sendMessageAC = (): SentMessageAT => ({
+    type: 'SEND MESSAGE'
+})

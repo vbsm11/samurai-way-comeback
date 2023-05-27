@@ -1,5 +1,5 @@
-import {profileReducer} from './profile-reducer';
-import {dialogsReducer} from './dialogs-reducer';
+import {ProfileActionType, profileReducer} from './profile-reducer';
+import {DialogsActionType, dialogsReducer} from './dialogs-reducer';
 import {sidebarReducer} from './sidebar-reducer-reducer';
 
 export type DialogsType = {
@@ -47,25 +47,7 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-type UpdateNewPostTextAT = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
-
-type AddPostAT = {
-    type: 'ADD-POST'
-}
-
-type UpdateNewMessageTextAT = {
-    type: 'UPDATE-NEW-MESSAGE-TEXT'
-    newText: string
-}
-
-type SentMessageAT = {
-    type: 'SEND MESSAGE'
-}
-
-export type ActionType = UpdateNewPostTextAT | AddPostAT | UpdateNewMessageTextAT | SentMessageAT
+export type ActionType = ProfileActionType | DialogsActionType
 
 export type StoreType = {
     _state: RootStateType
@@ -163,21 +145,4 @@ export const store: StoreType = {
     }
 }
 
-export const updateNewPostTextAC = (newText: string): UpdateNewPostTextAT => ({
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText
-})
-
-export const addPostAC = (): AddPostAT => ({
-    type: 'ADD-POST',
-})
-
-export const updateNewMessageTextAC = (newText: string): UpdateNewMessageTextAT => ({
-    type: 'UPDATE-NEW-MESSAGE-TEXT',
-    newText
-})
-
-export const sendMessageAC = (): SentMessageAT => ({
-    type: 'SEND MESSAGE'
-})
 

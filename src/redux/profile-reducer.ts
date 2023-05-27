@@ -1,5 +1,16 @@
 import {ActionType, PostsType, ProfilePageType} from './state';
 
+type UpdateNewPostTextAT = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+type AddPostAT = {
+    type: 'ADD-POST'
+}
+
+export type ProfileActionType = UpdateNewPostTextAT | AddPostAT
+
 export const profileReducer = (state: ProfilePageType, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case 'UPDATE-NEW-POST-TEXT':
@@ -14,3 +25,12 @@ export const profileReducer = (state: ProfilePageType, action: ActionType): Prof
             return state
     }
 }
+
+export const updateNewPostTextAC = (newText: string): UpdateNewPostTextAT => ({
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText
+})
+
+export const addPostAC = (): AddPostAT => ({
+    type: 'ADD-POST',
+})
