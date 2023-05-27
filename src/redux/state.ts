@@ -43,17 +43,13 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
-type AddPostAT = {
-    type: 'ADD-POST'
-}
-
 type UpdateNewPostTextAT = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
 
-type SentMessageAT = {
-    type: 'SENT MESSAGE'
+type AddPostAT = {
+    type: 'ADD-POST'
 }
 
 type UpdateNewMessageTextAT = {
@@ -61,7 +57,11 @@ type UpdateNewMessageTextAT = {
     newText: string
 }
 
-export type ActionType = AddPostAT | UpdateNewPostTextAT | SentMessageAT | UpdateNewMessageTextAT
+type SentMessageAT = {
+    type: 'SEND MESSAGE'
+}
+
+export type ActionType = UpdateNewPostTextAT | AddPostAT | UpdateNewMessageTextAT | SentMessageAT
 
 export type StoreType = {
     _state: RootStateType
@@ -152,44 +152,45 @@ export const store: StoreType = {
 
     dispatch(action) {
         switch (action.type) {
+            case 'UPDATE-NEW-POST-TEXT':
+                this._state.profilePage.newPostText = action.newText
+                this._callSubscriber()
+                break
             case 'ADD-POST':
                 const newPost: PostsType = {id: '3', message: this._state.profilePage.newPostText, likesCount: 0}
                 this._state.profilePage.posts.unshift(newPost)
                 this._state.profilePage.newPostText = ''
                 this._callSubscriber()
                 break
-            case 'UPDATE-NEW-POST-TEXT':
-                this._state.profilePage.newPostText = action.newText
+            case 'UPDATE-NEW-MESSAGE-TEXT':
+                this._state.dialogsPage.newMessageText = action.newText
                 this._callSubscriber()
                 break
-            case 'SENT MESSAGE':
+            case 'SEND MESSAGE':
                 const newMessage: MessagesType = {id: '8', message: this._state.dialogsPage.newMessageText, isMy: true}
                 this._state.dialogsPage.messages.push(newMessage)
                 this._state.dialogsPage.newMessageText = ''
-                this._callSubscriber()
-                break
-            case 'UPDATE-NEW-MESSAGE-TEXT':
-                this._state.dialogsPage.newMessageText = action.newText
                 this._callSubscriber()
                 break
         }
     }
 }
 
-export const addPostAC = (): AddPostAT => ({
-    type: 'ADD-POST',
-})
-
 export const updateNewPostTextAC = (newText: string): UpdateNewPostTextAT => ({
     type: 'UPDATE-NEW-POST-TEXT',
     newText
 })
 
-export const sentMessageAC = (): SentMessageAT => ({
-    type: 'SENT MESSAGE'
+export const addPostAC = (): AddPostAT => ({
+    type: 'ADD-POST',
 })
 
 export const updateNewMessageTextAC = (newText: string): UpdateNewMessageTextAT => ({
     type: 'UPDATE-NEW-MESSAGE-TEXT',
     newText
 })
+
+export const sendMessageAC = (): SentMessageAT => ({
+    type: 'SEND MESSAGE'
+})
+
