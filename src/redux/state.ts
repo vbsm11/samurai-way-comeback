@@ -43,15 +43,34 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+type AddPostAT = {
+    type: 'ADD-POST'
+}
+
+type UpdateNewPostTextAT = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+type SentMessageAT = {
+    type: 'SENT MESSAGE'
+}
+
+type UpdateNewMessageTextAT = {
+    type: 'UPDATE-NEW-MESSAGE-TEXT'
+    newText: string
+}
+
+export type ActionType = AddPostAT | UpdateNewPostTextAT | SentMessageAT | UpdateNewMessageTextAT
+
 export type StoreType = {
     _state: RootStateType
-    getState: () => RootStateType
     _callSubscriber: () => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    sentMessage: () => void
-    updateNewMessageText: (newNext: string) => void
+
+    getState: () => RootStateType
     subscribe: (observer: () => void) => void
+
+    dispatch: (action: ActionType) => void
 }
 
 export const store: StoreType = {
@@ -121,33 +140,38 @@ export const store: StoreType = {
             ]
         }
     },
-    getState() {
-        return this._state
-    },
     _callSubscriber() {
         console.log('state changed')
     },
-    addPost() {
-        const newPost: PostsType = {id: '3', message: this._state.profilePage.newPostText, likesCount: 0}
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this._callSubscriber()
-    },
-    updateNewPostText(newText: string)  {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber()
-    },
-    sentMessage()  {
-        const newMessage: MessagesType = {id: '8', message: this._state.dialogsPage.newMessageText, isMy: true}
-        this._state.dialogsPage.messages.push(newMessage)
-        this._state.dialogsPage.newMessageText = ''
-        this._callSubscriber()
-    },
-    updateNewMessageText(newNext: string) {
-        this._state.dialogsPage.newMessageText = newNext
-        this._callSubscriber()
+    getState() {
+        return this._state
     },
     subscribe(observer: () => void) {
         this._callSubscriber = observer
+    },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                const newPost: PostsType = {id: '3', message: this._state.profilePage.newPostText, likesCount: 0}
+                this._state.profilePage.posts.unshift(newPost)
+                this._state.profilePage.newPostText = ''
+                this._callSubscriber()
+                break
+            case 'UPDATE-NEW-POST-TEXT':
+                this._state.profilePage.newPostText = action.newText
+                this._callSubscriber()
+                break
+            case 'SENT MESSAGE':
+                const newMessage: MessagesType = {id: '8', message: this._state.dialogsPage.newMessageText, isMy: true}
+                this._state.dialogsPage.messages.push(newMessage)
+                this._state.dialogsPage.newMessageText = ''
+                this._callSubscriber()
+                break
+            case 'UPDATE-NEW-MESSAGE-TEXT':
+                this._state.dialogsPage.newMessageText = action.newText
+                this._callSubscriber()
+                break
+        }
     }
 }

@@ -5,17 +5,14 @@ import {Navbar} from './components/Navbar/Navbar';
 import {Profile} from './components/Profile/Profile';
 import {Dialogs} from './components/Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
-import {RootStateType} from './redux/state';
+import {ActionType, RootStateType} from './redux/state';
 
 type AppPropsType = {
     state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    sentMessage: () => void
-    updateNewMessageText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 }
 
-const App: React.FC<AppPropsType> = ({state, addPost, updateNewPostText, sentMessage, updateNewMessageText}) => {
+const App: React.FC<AppPropsType> = ({state, dispatch}) => {
     return (
         <div className="app-wrapper">
             <Header/>
@@ -24,15 +21,13 @@ const App: React.FC<AppPropsType> = ({state, addPost, updateNewPostText, sentMes
                 <Route path="/profile" render={() =>
                     <Profile
                         profileState={state.profilePage}
-                        addPost={addPost}
-                        updateNewPostText={updateNewPostText}
+                        dispatch={dispatch}
                     />
                 }/>
                 <Route path="/dialogs" render={() =>
                     <Dialogs
                         dialogsState={state.dialogsPage}
-                        sentMessage={sentMessage}
-                        updateNewMessageText={updateNewMessageText}
+                        dispatch={dispatch}
                     />}
                 />
             </div>

@@ -1,17 +1,16 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import {Post} from './Post/Post';
-import {PostsType} from '../../../redux/state';
+import {ActionType, PostsType} from '../../../redux/state';
 
 
 type MyPostsPropsType = {
     posts: PostsType[]
     newPostText: string
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 }
 
-export const MyPosts: React.FC<MyPostsPropsType> = ({posts, newPostText, addPost, updateNewPostText}) => {
+export const MyPosts: React.FC<MyPostsPropsType> = ({posts, newPostText, dispatch}) => {
 
     const postsElements = posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>)
 
@@ -19,8 +18,15 @@ export const MyPosts: React.FC<MyPostsPropsType> = ({posts, newPostText, addPost
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            updateNewPostText(newPostElement.current.value)
+            dispatch({
+                type: 'UPDATE-NEW-POST-TEXT',
+                newText: newPostElement.current.value
+            })
         }
+    }
+
+    const addPost = () => {
+      dispatch({type: 'ADD-POST'})
     }
 
     return (
