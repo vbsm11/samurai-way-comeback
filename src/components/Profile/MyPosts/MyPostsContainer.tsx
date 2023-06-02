@@ -9,7 +9,7 @@ type MyPostsContainerPropsType = {
 
 export const MyPostsContainer: React.FC<MyPostsContainerPropsType> = ({store}) => {
 
-    const state = store.getState()
+    const state = store.getState().profilePage
 
 
     const updateNewPostText = (text: string) => {
@@ -21,8 +21,8 @@ export const MyPostsContainer: React.FC<MyPostsContainerPropsType> = ({store}) =
     }
 
     return <MyPosts
-        posts={state.profilePage.posts}
-        newPostText={state.profilePage.newPostText}
+        posts={state.posts}
+        newPostText={state.newPostText}
         updateNewPostText={updateNewPostText}
         addPost={addPost}
     />

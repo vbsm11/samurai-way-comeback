@@ -9,7 +9,7 @@ type DialogsPropsType = {
 
 export const DialogsContainer: React.FC<DialogsPropsType> = ({store}) => {
 
-    const state = store.getState()
+    const state = store.getState().dialogsPage
 
     const updateNewMessageText = (text: string) => {
         store.dispatch(updateNewMessageTextAC(text))
@@ -20,9 +20,9 @@ export const DialogsContainer: React.FC<DialogsPropsType> = ({store}) => {
     }
 
     return <Dialogs
-        dialogs={state.dialogsPage.dialogs}
-        messages={state.dialogsPage.messages}
-        newMessageText={state.dialogsPage.newMessageText}
+        dialogs={state.dialogs}
+        messages={state.messages}
+        newMessageText={state.newMessageText}
         updateNewMessageText={updateNewMessageText}
         sendMessage={sendMessage}
     />
