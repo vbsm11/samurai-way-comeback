@@ -11,10 +11,20 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: () => void
+
+    getState: () => RootStateType
+    subscribe: (observer: () => void) => void
+
+    dispatch: (action: ActionType) => void
+}
+
 const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer
 })
 
-export const store = createStore(reducers)
+export const store: StoreType = createStore(reducers)

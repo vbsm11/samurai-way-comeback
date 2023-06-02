@@ -2,27 +2,24 @@ import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogItem} from './DialogItem/DialogItem';
 import {Message} from './Message/Message';
-import {ActionType} from '../../redux/redux-store';
-import {DialogsPageType, sendMessageAC, updateNewMessageTextAC} from '../../redux/dialogs-reducer';
+import {DialogsType, MessagesType} from '../../redux/dialogs-reducer';
 
 type DialogsPropsType = {
-    dialogsState: DialogsPageType
-    dispatch: (action: ActionType) => void
+    dialogs: DialogsType[]
+    messages: MessagesType[]
+    newMessageText: string
+    updateNewMessageText: (text: string) => void
+    sendMessage: () => void
 }
 
-export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, dispatch}) => {
+export const Dialogs: React.FC<DialogsPropsType> = ({dialogs, messages, newMessageText,updateNewMessageText, sendMessage}) => {
 
-    const dialogsElements = dialogsState.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}
-                                                                      imgUrl={d.imgUrl}/>)
+    const dialogsElements = dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id} imgUrl={d.imgUrl}/>)
 
-    const messagesElements = dialogsState.messages.map(m => <Message key={m.id} message={m.message} isMy={m.isMy}/>)
+    const messagesElements = messages.map(m => <Message key={m.id} message={m.message} isMy={m.isMy}/>)
 
     const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        dispatch(updateNewMessageTextAC(e.currentTarget.value))
-    }
-
-    const sendMessage = () => {
-        dispatch(sendMessageAC())
+        updateNewMessageText(e.currentTarget.value)
     }
 
     return (
@@ -34,7 +31,7 @@ export const Dialogs: React.FC<DialogsPropsType> = ({dialogsState, dispatch}) =>
                 {messagesElements}
                 <div className={s.newMessage}>
                     <textarea
-                        value={dialogsState.newMessageText}
+                        value={newMessageText}
                         placeholder="Enter your message"
                         onChange={onChangeHandler}
                     />
