@@ -1,4 +1,4 @@
-import {ActionType, PostsType, ProfilePageType} from './state';
+import {ActionType, PostsType, ProfilePageType} from './store';
 
 type UpdateNewPostTextAT = {
     type: 'UPDATE-NEW-POST-TEXT'

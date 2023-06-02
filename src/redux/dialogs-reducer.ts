@@ -1,4 +1,4 @@
-import {ActionType, DialogsPageType, MessagesType} from './state';
+import {ActionType, DialogsPageType, MessagesType} from './store';
 
 type UpdateNewMessageTextAT = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
