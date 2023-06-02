@@ -1,7 +1,7 @@
 import {combineReducers, createStore} from 'redux';
 import {ProfileActionType, profileReducer} from './profile-reducer';
 import {DialogsActionType, dialogsReducer} from './dialogs-reducer';
-import {SidebarActionType, sidebarReducer} from './sidebar-reducer-reducer';
+import {SidebarActionType, sidebarReducer} from './sidebar-reducer';
 
 export type ActionType = ProfileActionType | DialogsActionType | SidebarActionType
 

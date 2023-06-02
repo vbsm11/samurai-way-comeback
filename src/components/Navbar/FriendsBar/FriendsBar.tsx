@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './FriendsBar.module.css'
-import {FriendsType} from '../../../redux/sidebar-reducer-reducer';
+import {FriendsType} from '../../../redux/sidebar-reducer';
 
 type NavbarPropsType = {
     firstFriends: FriendsType[]
