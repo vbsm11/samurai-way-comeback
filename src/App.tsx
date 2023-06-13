@@ -5,7 +5,7 @@ import {Profile} from './components/Profile/Profile';
 import {Route} from 'react-router-dom';
 import {DialogsContainer} from './components/Dialogs/DialogsContainer';
 import {NavbarContainer} from './components/Navbar/NavbarContainer';
-import {Users} from './components/Users/Users';
+import {UsersContainer} from './components/Users/UsersContainer';
 
 
 const App: React.FC = () => {
@@ -23,7 +23,7 @@ const App: React.FC = () => {
                     <DialogsContainer/>}
                 />
                 <Route path="/users" render={() =>
-                    <Users/>}
+                    <UsersContainer/>}
                 />
             </div>
         </div>
