@@ -2,6 +2,7 @@ import React from 'react';
 import {UsersPropsType} from './UsersContainer';
 import s from './Users.module.css'
 import * as axios from 'axios'
+import userPhoto from '../../assets/images/user_photo.png'
 
 export const Users: React.FC<UsersPropsType> = (props) => {
     if (props.users.length === 0) {
@@ -14,7 +15,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small? u.photos.small: ''} alt='avatar' className={s.usersPhoto}/>
+                        <img src={u.photos.small? u.photos.small: userPhoto} alt='avatar' className={s.usersPhoto}/>
                     </div>
                     <div>
                         {u.followed
