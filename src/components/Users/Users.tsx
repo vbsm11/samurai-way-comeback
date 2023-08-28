@@ -5,7 +5,8 @@ import * as axios from 'axios'
 
 export const Users: React.FC<UsersPropsType> = (props) => {
     if (props.users.length === 0) {
-        axios.default('https://social-network.samuraijs.com/api/1.0/users').then(response => props.setUsers(response.data.users))
+        axios.default('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response =>  props.setUsers(response.data.items))
 
         // props.setUsers([
         //     {
@@ -60,7 +61,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={u.photos.small} className={s.usersPhoto}/>
+                        <img src={u.photos.small? u.photos.small: ''} className={s.usersPhoto}/>
                     </div>
                     <div>
                         {u.followed
