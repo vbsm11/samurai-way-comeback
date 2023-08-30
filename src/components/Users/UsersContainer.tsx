@@ -1,5 +1,5 @@
 import React from 'react';
-import {Users} from './Users';
+import {UsersApiComponent} from './UsersApiComponent';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
 import {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 
 export type UsersPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent)
