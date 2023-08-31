@@ -17,6 +17,7 @@ export type UsersStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type FollowAT = {
@@ -50,7 +51,8 @@ const initialState: UsersStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 }
 
 export const usersReducer = (state:UsersStateType = initialState, action: ActionType): UsersStateType => {

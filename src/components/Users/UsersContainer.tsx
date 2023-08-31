@@ -54,6 +54,7 @@ type MapStateToPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type MapDispatchToPropsType = {
@@ -68,7 +69,8 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => ({
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
     totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage
+    currentPage: state.usersPage.currentPage,
+    isFetching: state.usersPage.isFetching
 })
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
