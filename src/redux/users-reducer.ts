@@ -104,7 +104,7 @@ export const setTotalUsersCountAC = (totalCount: number): SetTotalUsersCountAT =
     totalCount
 })
 
-export const toggleIsFetchingAC= (newIsFetching: boolean): ToggleIsFetchingAT => ({
+export const toggleIsFetchingAC = (newIsFetching: boolean): ToggleIsFetchingAT => ({
     type: 'TOGGLE-IS-FETCHING',
     newIsFetching
 })
