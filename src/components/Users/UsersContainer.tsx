@@ -12,6 +12,7 @@ import {
 import {Dispatch} from 'redux';
 import * as axios from 'axios';
 import {Users} from './Users';
+import preloader from '../../assets/images/preloader.gif'
 
 
 export class UsersApiComponent extends React.Component<UsersPropsType> {
@@ -35,16 +36,21 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
     render() {
 
         return (
-            <Users
-                totalUsersCount={this.props.totalUsersCount}
-                pageSize={this.props.pageSize}
-                currentPage={this.props.currentPage}
-                users={this.props.users}
+            <>
+                {this.props.isFetching
+                    ? <img src={preloader} alt='loading'/>
+                    : <Users
+                        totalUsersCount={this.props.totalUsersCount}
+                        pageSize={this.props.pageSize}
+                        currentPage={this.props.currentPage}
+                        users={this.props.users}
 
-                onPageChanged={this.onPageChanged}
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-            />)
+                        onPageChanged={this.onPageChanged}
+                        follow={this.props.follow}
+                        unfollow={this.props.unfollow}
+                    />
+                }
+            </>)
 
     }
 }
