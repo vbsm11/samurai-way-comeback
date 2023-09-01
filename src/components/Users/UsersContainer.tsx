@@ -5,7 +5,7 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAc,
+    setUsersAc, toggleIsFetchingAC,
     unfollowAC,
     UserType
 } from '../../redux/users-reducer';
@@ -69,6 +69,7 @@ type MapDispatchToPropsType = {
     setUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (newIsFetching: boolean) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => ({
@@ -95,6 +96,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setTotalUsersCount: (totalCount) => {
             dispatch(setTotalUsersCountAC(totalCount))
+        },
+        toggleIsFetching: (newIsFetching) => {
+            dispatch(toggleIsFetchingAC(newIsFetching))
         }
     }
 }
