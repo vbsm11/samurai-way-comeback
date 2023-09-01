@@ -2,15 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAc,
-    toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
     UserType
 } from '../../redux/users-reducer';
-import {Dispatch} from 'redux';
 import * as axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
@@ -90,29 +89,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => ({
     isFetching: state.usersPage.isFetching
 })
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users: UserType[]) => {
-            dispatch(setUsersAc(users))
-        },
-        setCurrentPage: (currentPage) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching: (newIsFetching) => {
-            dispatch(toggleIsFetchingAC(newIsFetching))
-        }
-    }
-}
 
 export type UsersPropsType = MapDispatchToPropsType & MapStateToPropsType
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersApiComponent)
+export const UsersContainer = connect(mapStateToProps, {follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersApiComponent)
