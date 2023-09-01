@@ -5,14 +5,15 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAc, toggleIsFetchingAC,
+    setUsersAc,
+    toggleIsFetchingAC,
     unfollowAC,
     UserType
 } from '../../redux/users-reducer';
 import {Dispatch} from 'redux';
 import * as axios from 'axios';
 import {Users} from './Users';
-import preloader from '../../assets/images/preloader.gif'
+import {Preloader} from '../common/Preloader/Preloader';
 
 
 export class UsersApiComponent extends React.Component<UsersPropsType> {
@@ -45,18 +46,20 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
         return (
             <>
                 {this.props.isFetching
-                    ? <img src={preloader} alt='loading'/>
-                    : <Users
-                        totalUsersCount={this.props.totalUsersCount}
-                        pageSize={this.props.pageSize}
-                        currentPage={this.props.currentPage}
-                        users={this.props.users}
-
-                        onPageChanged={this.onPageChanged}
-                        follow={this.props.follow}
-                        unfollow={this.props.unfollow}
-                    />
+                    ? <Preloader/>
+                    : null
                 }
+                <Users
+                    totalUsersCount={this.props.totalUsersCount}
+                    pageSize={this.props.pageSize}
+                    currentPage={this.props.currentPage}
+                    users={this.props.users}
+
+                    onPageChanged={this.onPageChanged}
+                    follow={this.props.follow}
+                    unfollow={this.props.unfollow}
+                />
+
             </>)
 
     }
