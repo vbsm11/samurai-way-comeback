@@ -36,7 +36,7 @@ export const Users: React.FC<UsersPropsType> = (props) => {
             {props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <NavLink to={'/profile' + u.id}>
+                        <NavLink to={'/profile/' + u.id}>
                             <img src={u.photos.small ? u.photos.small : userPhoto} alt="avatar" className={s.usersPhoto}/>
                         </NavLink>
                     </div>
