@@ -3,6 +3,7 @@ import {Profile} from './Profile';
 import * as axios from 'axios';
 import {connect} from 'react-redux';
 import {ProfilePageType, ProfileType, setUserProfile} from '../../redux/profile-reducer';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 
 class ProfileApiComponent extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
@@ -27,10 +28,20 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileType) => void
 }
-type ProfileContainerPropsType = MapDispatchToPropsType & MapStateToPropsType
+
+type PathParamsType = {
+    userId: string
+}
+
+type MapToPropsType = MapDispatchToPropsType & MapStateToPropsType
+
+type ProfileContainerPropsType = RouteComponentProps<PathParamsType> & MapToPropsType
+
 
 let mapStateToProps = (state: ProfilePageType): MapStateToPropsType => ({
     profile: state.profile
 })
 
-export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileApiComponent)
+const ProfileWithUrlData = withRouter(ProfileApiComponent)
+
+export const ProfileContainer = connect(mapStateToProps, {setUserProfile})(ProfileWithUrlData)
