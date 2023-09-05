@@ -4,8 +4,7 @@ import {DialogsActionType, dialogsReducer} from './dialogs-reducer';
 import {SidebarActionType, sidebarReducer} from './sidebar-reducer';
 import {UsersActionType, usersReducer} from './users-reducer';
 
-export type ActionType = ProfileActionType | DialogsActionType | SidebarActionType
-| UsersActionType
+export type ActionType = ProfileActionType | DialogsActionType | SidebarActionType | UsersActionType
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -17,3 +16,6 @@ const rootReducer = combineReducers({
 export type RootStateType = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer)
+
+// @ts-ignore
+window.store = store
