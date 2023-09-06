@@ -3,14 +3,16 @@ import {ProfileActionType, profileReducer} from './profile-reducer';
 import {DialogsActionType, dialogsReducer} from './dialogs-reducer';
 import {SidebarActionType, sidebarReducer} from './sidebar-reducer';
 import {UsersActionType, usersReducer} from './users-reducer';
+import {AuthActionType, authReducer} from './auth-reducer';
 
-export type ActionType = ProfileActionType | DialogsActionType | SidebarActionType | UsersActionType
+export type ActionType = ProfileActionType | DialogsActionType | SidebarActionType | UsersActionType | AuthActionType
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 
 export type RootStateType = ReturnType<typeof rootReducer>
