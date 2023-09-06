@@ -8,9 +8,12 @@ import {RootStateType} from '../../redux/redux-store';
 
 class ProfileApiComponent extends React.Component<ProfileContainerPropsType> {
     componentDidMount() {
-        axios.default('https://social-network.samuraijs.com/api/1.0/profile/2')
+        let userId= this.props.match.params.userId
+        if (!userId) {
+            userId = '2'
+        }
+        axios.default(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-                console.log(response.data)
                 this.props.setUserProfile(response.data)
             })
             .catch(err => console.log(err))
