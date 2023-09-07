@@ -1,19 +1,21 @@
 import {ActionType} from './redux-store';
 
-type UserDataType = {
-    userId: number | null
-    email: string | null
+export type UserDataType = {
+    id: number | null
     login: string | null
+    email: string | null
 }
 
-export type AuthStateType = {
+type AuthStateType = {
     userData: UserDataType
+    isAuth: boolean
     isFetching: boolean
 }
 
 type SetUserDataAT = {
     type: 'SET-USER-DATA'
     userData: UserDataType
+    isAuth: boolean
 }
 
 
@@ -22,10 +24,11 @@ export type AuthActionType = SetUserDataAT
 
 const initialState: AuthStateType = {
     userData: {
-        userId: null,
-        email: null,
+        id: null,
         login: null,
+        email: null,
     },
+    isAuth: false,
     isFetching: false
 }
 
@@ -34,7 +37,8 @@ export const authReducer = (state:AuthStateType = initialState, action: ActionTy
         case 'SET-USER-DATA':
             return {
                 ...state,
-                userData: action.userData
+                userData: action.userData,
+                isAuth: action.isAuth
             }
         default:
             return state
@@ -43,6 +47,7 @@ export const authReducer = (state:AuthStateType = initialState, action: ActionTy
 
 export const setUserData = (userData: UserDataType): SetUserDataAT => ({
     type: 'SET-USER-DATA',
-    userData
+    userData,
+    isAuth: true
 })
 
