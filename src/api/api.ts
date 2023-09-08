@@ -11,3 +11,9 @@ export const unfollowRequest = (id: number) => {
         withCredentials: true
     }).then(response => response.data)
 }
+
+export const followRequest = (id: number) => {
+    return axios.default.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+        withCredentials: true
+    }).then(response => response.data)
+}
