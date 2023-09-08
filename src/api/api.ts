@@ -17,3 +17,10 @@ export const followRequest = (id: number) => {
         withCredentials: true
     }).then(response => response.data)
 }
+
+export const auth = () => {
+    return axios.default('https://social-network.samuraijs.com/api/1.0/auth/me', {
+        withCredentials: true
+    })
+        .then(response => response.data)
+}
