@@ -18,6 +18,7 @@ export type UsersStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    isFollowingInProgress: boolean
 }
 
 type FollowAT = {
@@ -50,14 +51,20 @@ type ToggleIsFetchingAT = {
     newIsFetching: boolean
 }
 
-export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT
+type ToggleIsFollowingProgressAT = {
+    type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
+    newIsFollowingInProgress: boolean
+}
+
+export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | ToggleIsFollowingProgressAT
 
 const initialState: UsersStateType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    isFollowingInProgress: false
 }
 
 export const usersReducer = (state:UsersStateType = initialState, action: ActionType): UsersStateType => {
@@ -74,6 +81,8 @@ export const usersReducer = (state:UsersStateType = initialState, action: Action
             return {...state, totalUsersCount: action.totalCount}
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.newIsFetching}
+        case 'TOGGLE_IS_FOLLOWING_PROGRESS':
+            return {...state, isFollowingInProgress: action.newIsFollowingInProgress}
         default:
             return state
     }
@@ -108,3 +117,9 @@ export const toggleIsFetching = (newIsFetching: boolean): ToggleIsFetchingAT => 
     type: 'TOGGLE-IS-FETCHING',
     newIsFetching
 })
+
+export const toggleIsFollowingProgress = (newIsFollowingInProgress: boolean): ToggleIsFollowingProgressAT => ({
+    type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
+    newIsFollowingInProgress
+})
+
