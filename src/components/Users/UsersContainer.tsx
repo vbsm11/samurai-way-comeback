@@ -10,18 +10,16 @@ import {
     unfollow,
     UserType
 } from '../../redux/users-reducer';
-import * as axios from 'axios';
 import {Users} from './Users';
 import {Preloader} from '../common/Preloader/Preloader';
+import {getUsers} from '../../api/api';
 
 
 export class UsersApiComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.default(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
+        getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -34,9 +32,7 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
 
         this.props.toggleIsFetching(true)
 
-        axios.default(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            withCredentials: true
-        })
+        getUsers(pageNumber, this.props.pageSize)
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
