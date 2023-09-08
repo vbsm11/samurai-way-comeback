@@ -5,3 +5,9 @@ export const getUsers = (pageNumber: number, pageSize: number) => {
       withCredentials: true
   }).then(response => response.data)
 }
+
+export const unfollowRequest = (id: number) => {
+    return axios.default.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+        withCredentials: true
+    }).then(response => response.data)
+}
