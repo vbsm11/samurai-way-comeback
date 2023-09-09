@@ -48,7 +48,6 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                     <div>
                         {u.followed
                             ? <button
-                                disabled={props.IsFollowingInProgress}
                                 onClick={() => {
                                     props.toggleIsFollowingProgress(true);
                                     unfollowRequest(u.id)
@@ -56,13 +55,14 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                             if (data.resultCode) {
                                                 props.unfollow(u.id)
                                             }
+                                            props.toggleIsFollowingProgress(false);
                                         })
-                                    props.toggleIsFollowingProgress(false)
-                                }}>
+                                }}
+                                disabled={props.IsFollowingInProgress}
+                            >
                                 unfollow
                             </button>
                             : <button
-                                disabled={props.IsFollowingInProgress}
                                 onClick={() => {
                                     props.toggleIsFollowingProgress(true);
                                     followRequest(u.id)
@@ -70,9 +70,12 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                                             if (data.resultCode) {
                                                 props.follow(u.id)
                                             }
+                                            props.toggleIsFollowingProgress(false);
                                         })
-                                    props.toggleIsFollowingProgress(false);
-                                }}>
+
+                                }}
+                                disabled={props.IsFollowingInProgress}
+                            >
                                 follow
                             </button>
                         }
