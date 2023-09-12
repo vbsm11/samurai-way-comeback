@@ -18,7 +18,7 @@ export type UsersStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    isFollowingInProgress: boolean
+    isFollowingInProgress: Array<number>
 }
 
 type FollowAT = {
@@ -53,7 +53,8 @@ type ToggleIsFetchingAT = {
 
 type ToggleIsFollowingProgressAT = {
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
-    newIsFollowingInProgress: boolean
+    newIsFollowingInProgress: boolean,
+    userId: number
 }
 
 export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | ToggleIsFollowingProgressAT
@@ -64,7 +65,7 @@ const initialState: UsersStateType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    isFollowingInProgress: false
+    isFollowingInProgress: []
 }
 
 export const usersReducer = (state:UsersStateType = initialState, action: ActionType): UsersStateType => {
@@ -82,7 +83,12 @@ export const usersReducer = (state:UsersStateType = initialState, action: Action
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.newIsFetching}
         case 'TOGGLE_IS_FOLLOWING_PROGRESS':
-            return {...state, isFollowingInProgress: action.newIsFollowingInProgress}
+            return {
+                ...state,
+                isFollowingInProgress: action.newIsFollowingInProgress
+                    ? [...state.isFollowingInProgress, action.userId]
+                    : state.isFollowingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state
     }
@@ -118,8 +124,9 @@ export const toggleIsFetching = (newIsFetching: boolean): ToggleIsFetchingAT => 
     newIsFetching
 })
 
-export const toggleIsFollowingProgress = (newIsFollowingInProgress: boolean): ToggleIsFollowingProgressAT => ({
+export const toggleIsFollowingProgress = (newIsFollowingInProgress: boolean, userId: number): ToggleIsFollowingProgressAT => ({
     type: 'TOGGLE_IS_FOLLOWING_PROGRESS',
-    newIsFollowingInProgress
+    newIsFollowingInProgress,
+    userId
 })
 
