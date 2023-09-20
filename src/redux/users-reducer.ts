@@ -1,15 +1,17 @@
 import {ActionType} from './redux-store';
+import {Dispatch} from 'redux';
+import {getUsers} from '../api/api';
 
 export type UserType = {
-    "name": string
-    "id": number
-    "uniqueUrlName": string
-    "photos": {
-        "small": string | null
-        "large": string | null
+    'name': string
+    'id': number
+    'uniqueUrlName': string
+    'photos': {
+        'small': string | null
+        'large': string | null
     },
-    "status": string | null
-    "followed": boolean
+    'status': string | null
+    'followed': boolean
 }
 
 export type UsersStateType = {
@@ -57,7 +59,14 @@ type ToggleIsFollowingProgressAT = {
     userId: number
 }
 
-export type UsersActionType = FollowAT | UnfollowAT | SetUsersAT | SetCurrentPageAT | SetTotalUsersCountAT | ToggleIsFetchingAT | ToggleIsFollowingProgressAT
+export type UsersActionType =
+    FollowAT
+    | UnfollowAT
+    | SetUsersAT
+    | SetCurrentPageAT
+    | SetTotalUsersCountAT
+    | ToggleIsFetchingAT
+    | ToggleIsFollowingProgressAT
 
 const initialState: UsersStateType = {
     users: [],
@@ -68,12 +77,12 @@ const initialState: UsersStateType = {
     isFollowingInProgress: []
 }
 
-export const usersReducer = (state:UsersStateType = initialState, action: ActionType): UsersStateType => {
+export const usersReducer = (state: UsersStateType = initialState, action: ActionType): UsersStateType => {
     switch (action.type) {
         case 'FOLLOW':
-            return {...state, users: state.users.map(u => u.id === action.userId? {...u, followed: true}: u)}
+            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)}
         case 'UNFOLLOW':
-            return {...state, users: state.users.map(u => u.id === action.userId? {...u, followed: false}: u)}
+            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}
         case 'SET-USERS':
             return {...state, users: action.users}
         case 'SET-CURRENT-PAGE':
@@ -130,3 +139,14 @@ export const toggleIsFollowingProgress = (newIsFollowingInProgress: boolean, use
     userId
 })
 
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true))
+        getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
