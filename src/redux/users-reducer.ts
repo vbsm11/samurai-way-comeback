@@ -1,6 +1,6 @@
 import {ActionType} from './redux-store';
 import {Dispatch} from 'redux';
-import {getUsers} from '../api/api';
+import {usersAPI} from '../api/api';
 
 export type UserType = {
     'name': string
@@ -142,7 +142,7 @@ export const toggleIsFollowingProgress = (newIsFollowingInProgress: boolean, use
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
-        getUsers(currentPage, pageSize)
+        usersAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
