@@ -19,17 +19,17 @@ const initialState: SidebarType = {
     {
       id: '1',
       name: 'Georgiy',
-      imgUrl: 'https://pictures.sports.ru/NkyqqQSzzxQxqdz2ZOkG_Xw2tvjqW58GyH-E9nM_f00/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9nZW9yZ2lfZHpoaWtpeWEucG5n.png'
+      imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/3/0f/30307db7744fab81b692c9d06c5c2.png'
     },
     {
       id: '2',
       name: 'Quincy',
-      imgUrl: 'https://pictures.sports.ru/nqCrRC97O7ntFiQu0HuWC68cr2GPLkndIvflv8vwIXU/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9xdWluY3lfcHJvbWVzLnBuZw.png'
+      imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/e/bc/ccdcf399f4b07bb1f82f57c70ae3d.png'
     },
     {
       id: '3',
       name: 'Roman',
-      imgUrl: 'https://pictures.sports.ru/PJnwDEG50OgJKHtHle2aSqObd02fXZD-OuvtP_uzsfo/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9yb21hbl96b2JuaW4ucG5n.png'
+      imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/c/75/dc582a330418694ed5f5a1e0fe1fe.png'
     }
   ]
 }

@@ -34,27 +34,27 @@ const initialState: DialogsPageType = {
         {
             id: '1',
             name: 'Georgiy',
-            imgUrl: 'https://pictures.sports.ru/NkyqqQSzzxQxqdz2ZOkG_Xw2tvjqW58GyH-E9nM_f00/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9nZW9yZ2lfZHpoaWtpeWEucG5n.png'
+            imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/3/0f/30307db7744fab81b692c9d06c5c2.png'
         },
         {
             id: '2',
             name: 'Quincy',
-            imgUrl: 'https://pictures.sports.ru/nqCrRC97O7ntFiQu0HuWC68cr2GPLkndIvflv8vwIXU/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9xdWluY3lfcHJvbWVzLnBuZw.png'
+            imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/e/bc/ccdcf399f4b07bb1f82f57c70ae3d.png'
         },
         {
             id: '3',
             name: 'Roman',
-            imgUrl: 'https://pictures.sports.ru/PJnwDEG50OgJKHtHle2aSqObd02fXZD-OuvtP_uzsfo/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9yb21hbl96b2JuaW4ucG5n.png'
+            imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/c/75/dc582a330418694ed5f5a1e0fe1fe.png'
         },
         {
             id: '4',
             name: 'Alexandr',
-            imgUrl: 'https://pictures.sports.ru/7ZW3zTTA9MLECjntiQ9Uyth_aqt7qYImP0n3v6PJdWQ/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9hbGVrc2FuZHJfc29ib2xldi5wbmc.png'
+            imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/b/24/9bd2e95c945279d3428cbf6171f00.png'
         },
         {
             id: '5',
             name: 'Ruslan',
-            imgUrl: 'https://pictures.sports.ru/WRxHjaP5D-ETlZvO6ucbHDjpcnYYZz70eb2sXbo7lm4/fill/150/150/no/1/czM6Ly9zdGF0X3BpY3R1cmUvUExBWUVSL2F2YXRhci9ydXNsYW5fbGl0dmlub3ZfMjAwMTA4MTgucG5n.png'
+            imgUrl: 'https://photobooth.cdn.sports.ru/preset/tags/f/d0/047ca6a904eb1b021d6067c7ce27d.png'
         },
     ],
     messages: [
