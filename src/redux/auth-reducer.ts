@@ -55,7 +55,7 @@ export const setUserData = (userData: UserDataType): SetUserDataAT => ({
 
 export const auth = () => {
     return (dispatch: Dispatch) => {
-        authAPI.auth()
+        authAPI.me()
             .then((data) => {
                 if (data.resultCode === 0) {
                     dispatch(setUserData(data.data))
