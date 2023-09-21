@@ -15,7 +15,6 @@ type UsersPropsType = {
     onPageChanged: (newPage: number) => void
     follow: (id: number) => void
     unfollow: (id: number) => void
-    toggleIsFollowingProgress: (newIsFollowingInProgress: boolean, userId: number) => void
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {

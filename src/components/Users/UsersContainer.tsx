@@ -5,7 +5,6 @@ import {
     follow,
     getUsers,
     setCurrentPage,
-    toggleIsFollowingProgress,
     unfollow,
     UserType
 } from '../../redux/users-reducer';
@@ -43,7 +42,6 @@ export class UsersApiComponent extends React.Component<UsersPropsType> {
                     onPageChanged={this.onPageChanged}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
-                    toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                 />
 
             </>)
@@ -64,7 +62,6 @@ type MapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
-    toggleIsFollowingProgress: (newIsFollowingInProgress: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
@@ -86,6 +83,5 @@ export const UsersContainer = connect(
         follow,
         unfollow,
         setCurrentPage,
-        toggleIsFollowingProgress,
         getUsers
     })(UsersApiComponent)
