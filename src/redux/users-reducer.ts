@@ -103,12 +103,12 @@ export const usersReducer = (state: UsersStateType = initialState, action: Actio
     }
 }
 
-export const follow = (userId: number): FollowAT => ({
+export const followSuccess = (userId: number): FollowAT => ({
     type: 'FOLLOW',
     userId
 })
 
-export const unfollow = (userId: number): UnfollowAT => ({
+export const unfollowSuccess = (userId: number): UnfollowAT => ({
     type: 'UNFOLLOW',
     userId
 })
@@ -147,6 +147,32 @@ export const getUsers = (currentPage: number, pageSize: number) => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
                 dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
+
+export const follow = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, id))
+        usersAPI.followRequest(id)
+            .then(data => {
+                if (data.resultCode) {
+                    dispatch(followSuccess(id))
+                }
+                dispatch(toggleIsFollowingProgress(false, id));
+            })
+    }
+}
+
+export const unfollow = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, id))
+        usersAPI.unfollowRequest(id)
+            .then(data => {
+                if (data.resultCode) {
+                    dispatch(unfollowSuccess(id))
+                }
+                dispatch(toggleIsFollowingProgress(false, id));
             })
     }
 }
