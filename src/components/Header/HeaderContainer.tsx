@@ -2,18 +2,11 @@ import React from 'react';
 import {Header} from './Header';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../redux/redux-store';
-import {setUserData, UserDataType} from '../../redux/auth-reducer';
-import {auth} from '../../api/api';
+import {auth, UserDataType} from '../../redux/auth-reducer';
 
 class HeaderApiComponent extends React.Component<HeaderContainerPropsType> {
     componentDidMount() {
-        auth()
-            .then(data => {
-                if (data.resultCode === 0) {
-                    this.props.setUserData(data.data)
-                    console.log(this.props)
-                }
-            })
+        this.props.auth()
     }
 
     render() {
@@ -30,7 +23,7 @@ type MapStateToPropsType = {
 }
 
 type HeaderContainerPropsType = MapStateToPropsType & {
-    setUserData: (userData: UserDataType) => void
+    auth: () => void
 }
 
 
@@ -40,4 +33,4 @@ const mapStateToProps = (state: RootStateType) => ({
     isFetching: state.auth.isFetching
 })
 
-export const HeaderContainer = connect(mapStateToProps, {setUserData})(HeaderApiComponent)
+export const HeaderContainer = connect(mapStateToProps, {auth})(HeaderApiComponent)

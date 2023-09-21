@@ -24,7 +24,7 @@ export const usersAPI = {
 }
 
 
-export const auth = () => {
-    return instance.get('auth/me')
-        .then(response => response.data)
+export const authAPI = {
+  auth: () => instance.get('auth/me')
+      .then(response => response.data)
 }

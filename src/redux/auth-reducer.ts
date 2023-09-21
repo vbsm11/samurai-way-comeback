@@ -1,4 +1,6 @@
 import {ActionType} from './redux-store';
+import {Dispatch} from 'redux';
+import {authAPI} from '../api/api';
 
 export type UserDataType = {
     id: number | null
@@ -50,4 +52,15 @@ export const setUserData = (userData: UserDataType): SetUserDataAT => ({
     userData,
     isAuth: true
 })
+
+export const auth = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.auth()
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(setUserData(data.data))
+                }
+            })
+    }
+}
 
