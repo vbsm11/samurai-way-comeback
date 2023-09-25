@@ -1,19 +1,26 @@
-import React, {FC} from 'react'
+import React from 'react'
 
 type ProfileStatusPropsType = {
     status: string
 }
 
-export const ProfileStatus: FC<ProfileStatusPropsType> = ({status}) => {
+export class ProfileStatus extends React.Component<ProfileStatusPropsType> {
+    state = {
+        editMode: true
+    }
 
-    return (
-        <>
+    render() {
+        return (
             <div>
-                <span>{status}</span>
+                {this.state.editMode
+                    ? <div>
+                        <input value={this.props.status}/>
+                    </div>
+                    : <div>
+                        <span>{this.props.status}</span>
+                    </div>
+                }
             </div>
-            <div>
-                <input value={status}/>
-            </div>
-        </>
-    )
+        );
+    }
 }
