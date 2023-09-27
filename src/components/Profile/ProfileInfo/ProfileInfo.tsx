@@ -1,17 +1,14 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import {ProfileType} from '../../../redux/profile-reducer';
 import {Preloader} from '../../common/Preloader/Preloader';
 import userPhoto from '../../../assets/images/user_photo.png';
 import {ProfileStatus} from './ProfileStatus';
+import {ProfilePropsType} from '../Profile';
 
-type ProfileInfoPropsType = {
-    profile: ProfileType | null
-}
 
-export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
+export const ProfileInfo: React.FC<ProfilePropsType> = ({profile, status, updateStatus}) => {
 
-    if (!props.profile) {
+    if (!profile) {
         return <Preloader/>
     }
 
@@ -22,11 +19,11 @@ export const ProfileInfo: React.FC<ProfileInfoPropsType> = (props) => {
                      alt="cover"/>
             </div>
             <div className={s.description}>
-                {props.profile?.photos.large
-                    ? <img src={props.profile?.photos.large} alt="ava"/>
+                {profile?.photos.large
+                    ? <img src={profile?.photos.large} alt="ava"/>
                     : <img src={userPhoto} alt="basic ava"/>
                 }
-                <ProfileStatus status='Hi'/>
+                <ProfileStatus status={status} updateStatus={updateStatus}/>
             </div>
         </div>
     )
